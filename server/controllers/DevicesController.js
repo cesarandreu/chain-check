@@ -1,7 +1,8 @@
 'use strict';
 
 // modules
-var fs = require('co-fs');
+var fs = require('co-fs'),
+  uuid = require('uuid');
 
 // methods
 module.exports = {
@@ -87,6 +88,7 @@ function* upload () {
   }
 
   yield Audio.insert({
+    _id: uuid.v4(),
     timestamp: timestamp,
     deviceId: this.params.deviceId,
     file: yield fs.readFile(file.path, 'base64')
