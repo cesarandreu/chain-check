@@ -6,6 +6,8 @@ var path = require('path'),
   fixturePath = path.resolve(__dirname, '../test/server/fixture.wav');
 
 module.exports = function* seed (mongo) {
+  yield mongo.db.dropDatabase();
+
   var now = Date.now();
   var device, audio;
 
