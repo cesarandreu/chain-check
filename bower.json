@@ -1,14 +1,14 @@
 {
-  "name": "chain-check-server",
-  "description": "Chain check server",
+  "name": "chain-check",
+  "description": "Chain check",
   "version": "0.0.0",
-  "homepage": "https://github.com/cesarandreu/chain-check-server",
+  "homepage": "https://github.com/cesarandreu/chain-check",
   "authors": [
     "Cesar Andreu <cesarandreu@gmail.com>"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/cesarandreu/chain-check-server.git"
+    "url": "git://github.com/cesarandreu/chain-check.git"
   },
   "keywords": [],
   "ignore": [

@@ -1,4 +1,4 @@
-# chain-check-server
+# chain-check
 
 ## API
 
