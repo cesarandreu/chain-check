@@ -1,0 +1,17 @@
+{
+  "name": "clientboard",
+  "version": "0.0.1",
+  "description": "Client board on the bicycle",
+  "main": "filewatcher.js",
+  "dependencies": {
+    "gaze": "^0.6.4",
+    "socket.io": "^1.1.0",
+    "superagent": "^0.20.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
