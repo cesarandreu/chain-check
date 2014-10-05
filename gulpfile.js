@@ -50,7 +50,7 @@ gulp.task('clean', function (cb) {
  *** DEVELOPMENT TASKS ***
  *************************/
 
-// launches tdViz server
+// launches server
 gulp.task('dev-server', function () {
   nodemon({
     script: 'server/index.js',
@@ -249,7 +249,7 @@ gulp.task('build-assets', function () {
     .pipe(revCollector())
     .pipe(gulp.dest('public')) // should also copy over templates
     .pipe(templateCache({
-      module: 'tdViz'
+      module: 'chainCheck'
     }));
     // .pipe(rename(function (file) {
     //   // Renames from ./templates.js to ./scripts/templates.js
