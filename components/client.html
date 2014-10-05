@@ -1,0 +1,22 @@
+<html>
+<head>
+	<script src="/Users/u608/Development/hackathons/intelhackathon_04102014/socket.io-1.1.0.js"></script>
+	<script>
+		var socket = io.connect("http://10.15.1.62:8001");
+		socket.on('connect', function() {
+			socket.on("serverMessage", function(d) {
+			    alert(d);
+			    console.log("server send a message ");
+			});          
+		});
+	</script>
+	<script>
+		function send() {
+			socket.emit('clientMessage', "Test Message From Client");
+		}
+	</script>
+</head>
+
+<body>
+	<button onclick="send()" >send</button> 
+</body>
