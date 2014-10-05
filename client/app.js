@@ -7,8 +7,7 @@
 angular.module('chainCheck', [
   'ui.router',
   'ui.bootstrap',
-  'toastr',
-  'ngAudio'
+  'toastr'
 ])
 
 // Constants

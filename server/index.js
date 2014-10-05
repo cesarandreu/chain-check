@@ -2,8 +2,6 @@
 
 // modules
 var co = require('co'),
-  http = require('http'),
-  socketIO = require('socket.io'),
   debug = require('debug'),
   config = require('./config'),
   routes = require('./routes'),
@@ -44,9 +42,7 @@ app.init = function* init () {
     yield require('./seed')(mongo);
   }
 
-  app.server = http.Server(app.callback());
-  app.context.io = socketIO(app.server);
-  app.server.listen(config.port, function () {
+  app.server = app.listen(config.port, function () {
     log('Server running on port %d', config.port);
   });
 };
