@@ -6,7 +6,8 @@
   "dependencies": {
     "gaze": "^0.6.4",
     "socket.io": "^1.1.0",
-    "superagent": "^0.20.0"
+    "superagent": "^0.20.0",
+    "ws": "^0.4.32"
   },
   "devDependencies": {},
   "scripts": {
