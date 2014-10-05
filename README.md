@@ -1,4 +1,4 @@
-# chain-check
+# chain-check [![Build Status](https://travis-ci.org/cesarandreu/chain-check.svg?branch=master)](https://travis-ci.org/cesarandreu/chain-check)
 
 ## API
 
