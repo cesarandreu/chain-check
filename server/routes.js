@@ -26,8 +26,17 @@ module.exports = function routes () {
   // Audio
   API.get('/audio/:audioId', AudioController.get);
 
+  // FILES MIDDLEWARE
+  var FilesMiddleware;
+  if (config.env === 'production') {
+    FilesMiddleware = files;
+  } else {
+    // add livereload in development and testing
+    FilesMiddleware = compose([require('koa-livereload')(), files]);
+  }
+
   return compose([
-    filesMiddleware,
+    FilesMiddleware,
     mount('/api', API.middleware())
   ]);
 
@@ -35,7 +44,7 @@ module.exports = function routes () {
 
 // Helper middleware
 // files server
-function* filesMiddleware (next) {
+function* files (next) {
   // skip any route that starts with /api as it doesn't have any static files
   if (this.path.substr(0, 5).toLowerCase() === '/api/') {
     return yield next;
