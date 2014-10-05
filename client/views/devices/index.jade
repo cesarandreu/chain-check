@@ -1,0 +1,10 @@
+.row
+  .col-xs-12
+    h1.page-header <a ui-sref="devices.index">Devices</a>
+
+.row
+  .col-xs-12
+    ul.list-group
+      li.list-group-item(ng-repeat='device in Devices.list track by $index')
+        span.badge(ng-class='{good:!device.check, bad:device.check}') {{ Devices.status(device) }}
+        a.listTitle(ui-sref='devices.show.view({deviceId: device._id})') {{device._id}}

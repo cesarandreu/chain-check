@@ -1,0 +1,17 @@
+doctype html
+html(lang='en-US', ng-app='chainCheck')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    base(href='/')
+    title Chain Checker
+    meta(name='description', content='')
+    meta(name='viewport', content='width=device-width')
+    each link in styles
+      link(rel='stylesheet', href=link)
+
+  body
+    ui-view
+
+    each link in scripts
+      script(src=link)

@@ -1,0 +1,25 @@
+.row
+  .col-xs-12
+    h1.page-header
+      a(ui-sref='devices.index') Devices
+      small {{ Device._id }}
+      span.badge(ng-class='{good:!Device.check, bad:Device.check}') {{ Device.status() }}
+
+.row
+  .col-xs-12
+    h3 Status
+    .btn-group
+      button.btn.btn-success(type='button', ng-click='Device.set(false)') GOOD
+      button.btn.btn-danger(type='button', ng-click='Device.set(true)') BAD
+hr
+
+.row
+  .col-xs-12
+    ul.list-group
+      li.list-group-item(ng-repeat='audio in Device.audio track by $index')
+        .audio-control
+          button.btn.btn-xs.btn-primary(ng-click='Device.play(audio._id)')
+            <i class='glyphicon glyphicon-play'></i> Play
+          button.btn.btn-xs.btn-danger(ng-click='Device.stop(audio._id)')
+            <i class='glyphicon glyphicon-stop'></i> Stop
+        .listTitle {{ audio.timestamp | date:'yyyy-MM-dd @ HH:mm:ss' }}
