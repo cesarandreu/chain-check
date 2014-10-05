@@ -1,0 +1,22 @@
+{
+  "name": "chain-check-server",
+  "description": "Chain check server",
+  "version": "0.0.0",
+  "homepage": "https://github.com/cesarandreu/chain-check-server",
+  "authors": [
+    "Cesar Andreu <cesarandreu@gmail.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cesarandreu/chain-check-server.git"
+  },
+  "keywords": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ],
+  "main": "",
+  "dependencies": {}
+}
