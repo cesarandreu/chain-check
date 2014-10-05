@@ -3,7 +3,8 @@
 // modules
 var fs = require('co-fs'),
   uuid = require('uuid'),
-  pcm = require('pcmjs');
+  pcm = require('pcmjs'),
+  ws = require('../ws');
 
 // methods
 module.exports = {
@@ -51,12 +52,7 @@ function* trigger () {
     $set: { check: !!this.request.body.check }
   }, {});
 
-  // this.io.emit({
-  //   type: 'trigger',
-  //   deviceId: this.params.deviceId,
-  //   value: !!this.request.body.check
-  // });
-
+  ws.notify('trigger', {deviceId: this.params.deviceId, value: !!this.request.body.check});
   this.status = 204;
 }
 
@@ -82,10 +78,7 @@ function* upload () {
     });
     device = device[0];
 
-    // list is now bigger, so update it
-    // this.io.emit({
-    //   type: 'list'
-    // });
+    ws.notify('list');
   }
 
   var buff = yield fs.readFile(file.path);
@@ -108,11 +101,7 @@ function* upload () {
   });
 
   // audio now has more entries, so update it
-  // this.io.emit({
-  //   type: 'audio',
-  //   deviceId: this.params.deviceId
-  // });
-
+  ws.notify('audio', {deviceId: this.params.deviceId});
 
   this.status = 204;
 }

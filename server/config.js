@@ -11,7 +11,7 @@ var config = {
   // pcmjs
   pcmjs: {
     channels: 1,
-    rate: 8000,
+    rate: 4000,
     depth: 8
   },
 

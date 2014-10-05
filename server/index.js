@@ -5,7 +5,8 @@ var co = require('co'),
   debug = require('debug'),
   config = require('./config'),
   routes = require('./routes'),
-  mongo = require('./mongo');
+  mongo = require('./mongo'),
+  ws = require('./ws');
 
 // koa
 var koa = require('koa'),
@@ -45,6 +46,8 @@ app.init = function* init () {
   app.server = app.listen(config.port, function () {
     log('Server running on port %d', config.port);
   });
+
+  ws.listen(app.server);
 };
 
 // auto start if the app is not being initialized by another module
