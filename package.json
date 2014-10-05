@@ -68,11 +68,13 @@
     "merge-stream": "^0.1.6",
     "mocha": "^1.21.4",
     "openurl": "^1.1.0",
+    "pcmjs": "0.0.2",
     "run-sequence": "^1.0.1",
     "socket.io": "^1.1.0",
     "socket.io-client": "^1.1.0",
     "supertest": "^0.14.0",
     "thunkify": "^2.1.2",
-    "uuid": "^2.0.1"
+    "uuid": "^2.0.1",
+    "ws": "^0.4.32"
   }
 }

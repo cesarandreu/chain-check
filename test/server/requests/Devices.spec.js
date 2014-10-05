@@ -2,6 +2,7 @@
 
 var fs = require('co-fs'),
   path = require('path'),
+  pcm = require('pcmjs'),
   co = require('co');
 
 var helper = require('../helper'),
@@ -10,7 +11,7 @@ var helper = require('../helper'),
 
 var device, audio, now;
 
-var fixturePath = path.resolve(__dirname, '../fixture.wav');
+var fixturePath = path.resolve(__dirname, '../fixture');
 
 var expect = helper.expect,
   request = helper.request;
@@ -29,11 +30,16 @@ describe('Requests:Devices', function () {
     });
     device = device[0];
 
+    var data = (new pcm(helper.config.pcmjs))
+      .toWav(yield fs.readFile(fixturePath))
+      .encode()
+      .split('data:audio/wav;base64,')
+      .pop();
     audio = yield mongo.audio.insert({
       _id: uuid.v4(),
       deviceId: device._id,
       timestamp: now,
-      file: yield fs.readFile(fixturePath, 'base64')
+      file: data
     });
     audio = audio[0];
 
@@ -147,9 +153,13 @@ describe('Requests:Devices', function () {
         .field('timestamp', now)
         .end(function () {
           co(function* () {
-            var file = yield fs.readFile(fixturePath, 'base64');
+            var data = (new pcm(helper.config.pcmjs))
+              .toWav(yield fs.readFile(fixturePath))
+              .encode()
+              .split('data:audio/wav;base64,')
+              .pop();
             audio = yield mongo.audio.findOne({deviceId: deviceId});
-            expect(file).to.equal(audio.file);
+            expect(data).to.equal(audio.file);
             done();
           })();
         });

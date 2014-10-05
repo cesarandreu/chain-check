@@ -8,6 +8,13 @@ var config = {
   name: 'chain-check-server',
   env: (process.env.NODE_ENV || 'development').toLowerCase(),
 
+  // pcmjs
+  pcmjs: {
+    channels: 1,
+    rate: 8000,
+    depth: 8
+  },
+
   middleware: {
     // koa-compress
     compress: {},

@@ -2,7 +2,8 @@
 
 // modules
 var fs = require('co-fs'),
-  uuid = require('uuid');
+  uuid = require('uuid'),
+  pcm = require('pcmjs');
 
 // methods
 module.exports = {
@@ -50,11 +51,11 @@ function* trigger () {
     $set: { check: !!this.request.body.check }
   }, {});
 
-  this.io.emit({
-    type: 'trigger',
-    deviceId: this.params.deviceId,
-    value: !!this.request.body.check
-  });
+  // this.io.emit({
+  //   type: 'trigger',
+  //   deviceId: this.params.deviceId,
+  //   value: !!this.request.body.check
+  // });
 
   this.status = 204;
 }
@@ -82,23 +83,35 @@ function* upload () {
     device = device[0];
 
     // list is now bigger, so update it
-    this.io.emit({
-      type: 'list'
-    });
+    // this.io.emit({
+    //   type: 'list'
+    // });
   }
+
+  var buff = yield fs.readFile(file.path);
+  var arr = [];
+  for (var i = 0; i < buff.length; i++) {
+    arr.push(buff[i]);
+  }
+
+  var data = (new pcm(this.config.pcmjs))
+    .toWav(arr)
+    .encode()
+    .split('data:audio/wav;base64,')
+    .pop();
 
   yield Audio.insert({
     _id: uuid.v4(),
     timestamp: timestamp,
     deviceId: this.params.deviceId,
-    file: yield fs.readFile(file.path, 'base64')
+    file: data
   });
 
   // audio now has more entries, so update it
-  this.io.emit({
-    type: 'audio',
-    deviceId: this.params.deviceId
-  });
+  // this.io.emit({
+  //   type: 'audio',
+  //   deviceId: this.params.deviceId
+  // });
 
 
   this.status = 204;
